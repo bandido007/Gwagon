@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For my dearest Valentine 💕</title>
+    <!-- Romantic font & soft style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(145deg, #ffe6f0 0%, #ffd9e8 100%);
+            overflow: hidden;  /* keeps floating hearts contained, no scroll */
+            position: relative;
+            transition: background 0.8s ease;
+        }
+
+        /* floating hearts animation */
+        .heart-float {
+            position: absolute;
+            bottom: -10vh;
+            font-size: 1.8rem;
+            opacity: 0.6;
+            color: #ff99bb;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp 8s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* main card */
+        .card {
+            background: rgba(255, 245, 250, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px rgba(215, 50, 100, 0.25), 0 0 0 2px #fff8 inset;
+            padding: 2.5rem 2rem;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            z-index: 10;
+            transition: all 0.4s ease;
+            border: 1px solid #ffb6c1;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #b34167;
+            text-shadow: 3px 3px 0 #ffe2ed, 0 1px 10px #ffb3c6;
+            margin: 0.5rem 0 0.2rem;
+            line-height: 1.2;
+        }
+
+        .gif-container {
+            margin-bottom: 20px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px #faaac0;
+            display: inline-block;
+            background: #ffeef4;
+            padding: 8px;
+        }
+
+        .gif-container img {
+            width: 240px;
+            max-width: 100%;
+            border-radius: 24px;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gif-container img:hover {
+            transform: scale(1.02);
+        }
+
+        .poem {
+            font-size: 1.25rem;
+            color: #9f3e5c;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 14px 18px;
+            border-radius: 60px;
+            margin: 18px 0 12px;
+            font-weight: 500;
+            box-shadow: 0 4px 6px #ffb8cf;
+            backdrop-filter: blur(4px);
+            border: 1px solid #fff0f5;
+        }
+
+        .poem i {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.7rem;
+        }
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            position: relative;
+            min-height: 80px;
+        }
+
+        button {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(210, 70, 120, 0.3);
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+        }
+
+        #yesBtn {
+            background: #e91e63;
+            color: white;
+            border: 2px solid #ffe2f0;
+            text-shadow: 0 1px 3px #880038;
+            box-shadow: 0 0 15px #ff99bb, 0 8px 0 #a02c55;
+            transform: translateY(0);
+        }
+
+        #yesBtn:hover {
+            background: #ff2e7a;
+            transform: translateY(-4px);
+            box-shadow: 0 0 25px #ffa5c3, 0 12px 0 #a02c55;
+        }
+
+        #yesBtn:active {
+            transform: translateY(6px);
+            box-shadow: 0 0 15px #ff99bb, 0 2px 0 #a02c55;
+        }
+
+        #noBtn {
+            background: #fff0f7;
+            color: #c94f70;
+            border: 2px solid #ffb6c1;
+            position: absolute;  /* allows escaping */
+            left: auto;
+            top: auto;
+            transition: left 0.1s ease, top 0.1s ease, background 0.2s;
+            box-shadow: 0 5px 15px #eba2b9;
+            font-weight: 600;
+            min-width: 130px;
+            cursor: pointer;
+        }
+
+        #noBtn:hover {
+            background: #ffe3ed;
+            color: #b33f60;
+            box-shadow: 0 0 18px #ffadc2;
+        }
+
+        /* success content */
+        #successContent {
+            animation: softAppear 0.6s ease;
+        }
+
+        @keyframes softAppear {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .extra-love {
+            font-size: 1.3rem;
+            color: #be4970;
+            margin-top: 20px;
+            background: #ffeef4cc;
+            padding: 12px 18px;
+            border-radius: 50px;
+            backdrop-filter: blur(3px);
+        }
+
+        /* small romantic details */
+        .tiny-hearts {
+            font-size: 2.2rem;
+            line-height: 1;
+            letter-spacing: 8px;
+            opacity: 0.8;
+            margin: 10px 0 -10px;
+        }
+
+        /* responsive adjustment */
+        @media (max-width: 450px) {
+            h1 { font-size: 2.5rem; }
+            button { font-size: 1.4rem; padding: 10px 25px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- floating hearts generated by js -->
+    <div id="floatingHeartsContainer" style="position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; z-index:1;"></div>
+
+    <!-- MAIN CONTENT (question) -->
+    <div id="mainContent" class="card" style="position:relative; z-index:20;">
+        <div class="tiny-hearts">💗 💕 💗</div>
+        <div class="gif-container">
+            <!-- adorable romantic GIF: two cute bears hugging with heart -->
+            <img src="https://media.giphy.com/media/3o7abB06u9bNzA8LC8/giphy.gif" alt="Cute bears hugging love">
+        </div>
+        
+        <h1>My Dearest Gladness,</h1>
+        <!-- personalized question + sweet poem -->
+        <div class="poem">
+            <i>Roses are red, violets are blue,</i><br>
+            my heart only whispers your name.<br>
+            <span style="font-size:2rem;">💘</span>
+        </div>
+        <h1 style="font-size:2.8rem; margin-top:0;">will you be my Valentine?</h1>
+        
+        <div class="buttons">
+            <button id="yesBtn" onclick="sheSaidYes()">Yes 💖</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No 💔</button>
+        </div>
+        <div style="margin-top: 20px; color:#b34e72; font-size:1.2rem; font-weight:500; text-shadow:0 2px 4px white;">
+            (the "No" button is a bit shy...)
+        </div>
+    </div>
+
+    <!-- SUCCESS CONTENT (after yes) -->
+    <div id="successContent" class="card" style="display: none; position:relative; z-index:20;">
+        <div class="tiny-hearts">💖 🌹 💖</div>
+        <div class="gif-container">
+            <!-- dreamy celebration GIF: happy couple with hearts -->
+            <img src="https://media.giphy.com/media/l0MYt5jH6gkTWm8qo/giphy.gif" alt="Celebration love">
+        </div>
+        <h1>YAY! 💘✨</h1>
+        <div class="poem" style="font-size:1.8rem;">
+            <i>You've made my heart<br>the happiest heart.</i>
+        </div>
+        <h1 style="font-size:2.5rem; margin:0;">See you on the 14th, my love!</h1>
+        <div class="extra-love">
+            💕 I'll be counting the seconds 💕
+        </div>
+    </div>
+
+    <script>
+        // ===== floating hearts generator (very romantic) =====
+        function createFloatingHeart() {
+            const container = document.getElementById('floatingHeartsContainer');
+            if (!container) return;
+            const heart = document.createElement('span');
+            heart.className = 'heart-float';
+            // random heart symbol or lovely emoji
+            const symbols = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🩷', '💖', '💗', '💘', '💝', '🌸', '🌹', '🥰'];
+            heart.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            // random size
+            const size = Math.floor(Math.random() * 30 + 20); // 20-50px
+            heart.style.fontSize = size + 'px';
+            // random starting left position
+            heart.style.left = Math.random() * 100 + '%';
+            // random animation duration (between 5 and 12 seconds)
+            const duration = Math.random() * 8 + 5;
+            heart.style.animation = `floatUp ${duration}s linear infinite`;
+            // random delay so they don't all start together
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            // slight opacity variation
+            heart.style.opacity = Math.random() * 0.4 + 0.3;
+            container.appendChild(heart);
+
+            // remove after animation ends to avoid too many elements (optional)
+            setTimeout(() => {
+                if (heart && heart.parentNode) heart.remove();
+            }, duration * 1000 + 2000);
+        }
+
+        // generate hearts every 400ms
+        setInterval(createFloatingHeart, 400);
+
+        // ===== runaway NO button logic =====
+        function moveButton() {
+            var noBtn = document.getElementById('noBtn');
+            if (!noBtn) return;
+
+            // get viewport dimensions, accounting for button size
+            var maxX = window.innerWidth - noBtn.offsetWidth - 20;  // keep some margin
+            var maxY = window.innerHeight - noBtn.offsetHeight - 20;
+            
+            // ensure positive values
+            if (maxX < 0) maxX = 100;
+            if (maxY < 0) maxY = 100;
+
+            var x = Math.random() * maxX;
+            var y = Math.random() * maxY;
+            
+            // apply new position (absolute relative to viewport)
+            noBtn.style.position = 'fixed';  // makes it escape the button container
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+
+            // add a little teasing text sometimes (optional)
+            const texts = ["Not yet!", "Oh no you don't", "Try yes?", "💕", "Catch me", "So close...", "I'm shy"];
+            noBtn.innerText = texts[Math.floor(Math.random() * texts.length)];
+        }
+
+        // Reset button text after a short delay? Not necessary, it's fun.
+
+        // ===== when she says YES =====
+        function sheSaidYes() {
+            // hide main card, show success card
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('successContent').style.display = 'block';
+            
+            // change background to a warmer, deeper romantic tone
+            document.body.style.background = 'linear-gradient(145deg, #ffd9e8, #ffb3c6)';
+            
+            // optional: launch a few extra hearts (already floating)
+            for (let i = 0; i < 6; i++) {
+                setTimeout(createFloatingHeart, i * 150);
+            }
+
+            // also change the "No" button to something sweet? but it's hidden anyway, so fine.
+            // we could also remove the no button from DOM to avoid any weirdness, but it's hidden inside #mainContent.
+        }
+
+        // ensure the No button starts in a reasonable place (within flow)
+        window.onload = function() {
+            // set noBtn initial style: relative inside container, but we allow it to be moved later.
+            var noBtn = document.getElementById('noBtn');
+            if (noBtn) {
+                noBtn.style.position = 'absolute'; // keep it absolute but relative to buttons container? We'll set container relative
+                // make buttons container relative
+                var container = document.querySelector('.buttons');
+                if (container) {
+                    container.style.position = 'relative';
+                }
+                noBtn.style.left = '';  // let it be default (auto)
+                noBtn.style.top = '';
+                noBtn.style.position = 'absolute'; // inside relative container, initially at its natural place if left/top auto
+            }
+        };
+
+        // On window resize, we might want to keep the No button from disappearing off-screen? 
+        // but it's part of the fun; we can just let it be. If it goes out of view, user can't click anyway. 
+        // To be kinder, we can reposition inside viewport if it's outside on resize. Simple approach:
+        window.addEventListener('resize', function() {
+            var noBtn = document.getElementById('noBtn');
+            if (!noBtn) return;
+            // if button is fixed positioned, ensure it's still inside viewport
+            if (noBtn.style.position === 'fixed') {
+                var rect = noBtn.getBoundingClientRect();
+                var maxX = window.innerWidth - rect.width - 10;
+                var maxY = window.innerHeight - rect.height - 10;
+                var newX = parseFloat(noBtn.style.left) || 0;
+                var newY = parseFloat(noBtn.style.top) || 0;
+                if (newX > maxX) newX = maxX;
+                if (newY > maxY) newY = maxY;
+                if (newX < 0) newX = 0;
+                if (newY < 0) newY = 0;
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+            }
+        });
+
+        // Also: if the No button ever gets clicked via touch, move it (touch devices)
+        document.getElementById('noBtn')?.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moveButton();
+        });
+    </script>
+
+    <!-- tiny style to adjust initial noBtn position (within container) -->
+    <style>
+        /* Make buttons container relative so absolute noBtn stays inside initially */
+        .buttons {
+            position: relative;
+        }
+        #noBtn {
+            position: absolute;  /* will sit nicely after other button if left/top auto */
+            margin: 0;           /* remove default margins */
+        }
+        /* ensure it appears near the yes button */
+        #noBtn {
+            left: auto;
+            top: auto;
+        }
+        /* but to keep it from overlapping yes initially, we can nudge it */
+        /* (browsers will place it after the yes button because of HTML order, but absolute removes it from flow) 
+           we use left: auto; top: auto; => will be positioned at the coordinates it would have if static,
+           which is next to the previous button (yes). To make it look nice initially, we also set margin-left */
+        #noBtn {
+            margin-left: 200px;  /* rough estimate to put it beside yes, adjust per screen */
+        }
+        @media (max-width: 500px) {
+            #noBtn {
+                margin-left: 20px;  /* on small screens, it's under yes, so less margin */
+            }
+        }
+        /* for very small, we let it be natural block */
+        @media (max-width: 400px) {
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            #noBtn {
+                position: relative; /* simpler on mobile stack */
+                margin-left: 0;
+            }
+        }
+        /* but after moving, it becomes fixed - media queries won't affect that */
+    </style>
+</body>
+</html>
